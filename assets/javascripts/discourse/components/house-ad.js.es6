@@ -48,6 +48,32 @@ export default AdComponent.extend({
       }
       let ad = houseAds.creatives[adNames[adIndex[placement]]] || "";
       adIndex[placement] = (adIndex[placement] + 1) % adNames.length;
+      try {
+        var json = JSON.parse(ad);
+        var url = json.url;
+        var h = 'auto';
+        if (json.mobileHeight && this.site.mobileView) {
+          h = json.mobileHeight;
+        } else if (json.desktopHeight && !this.site.mobileView) {
+          h = json.desktopHeight;
+        } else if (json.height) {
+          h = json.height;
+        }
+        var w = '100%'
+        if (json.mobileWidth && this.site.mobileView) {
+          w = json.mobileWidth;
+        } else if (json.desktopWidth && !this.site.mobileView) {
+          w = json.desktopWidth;
+        } else if (json.width && !this.site.mobileView) {
+          w = json.width;
+        }
+        var other = '';
+        if (json.params) {
+          other = '&' + json.params;
+        }
+        return `<iframe src="${url}?mobile=${this.site.mobileView}&iw=${window.innerWidth}&ih=${window.innerHeight}&w=${document.body.clientWidth}&h=${document.body.clientHeight}&path=${window.location.pathname}${other}" frameborder="0" width="${w}" height="${h}"></iframe>`;
+      } catch (ex) {}
+
       return ad;
     } else {
       return "";

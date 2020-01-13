@@ -1,4 +1,9 @@
 {{#if showAd}}
-  <div class="google-adsense-label"><h2><a onclick="$('.login-button').click();" href="#">{{i18n 'adplugin.advertisement_label'}}</a></h2></div>
+  <div class="google-adsense-label"><h2><a class="house-ad-sign-in" href="#">{{i18n 'adplugin.advertisement_label'}}</a></h2></div>
   {{{adHtml}}}
 {{/if}}
+
+<script>
+  //document.getElementById('bar').addEventListener('click', doSomething);
+  $('body').on('click', '.house-ad-sign-in', function() { $('.login-button').click(); });
+</script>

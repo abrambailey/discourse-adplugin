@@ -6,7 +6,7 @@
 # authors: Vi and Sarah (@ladydanger and @cyberkoi)
 # url: https://github.com/discourse/discourse-adplugin
 
-register_asset "stylesheets/adplugin.scss"
+#register_asset "stylesheets/adplugin.scss"
 
 add_admin_route 'admin.adplugin.house_ads.title', 'houseAds'
 
